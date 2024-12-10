@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Winston's Parallax Visualizer</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        #canvas-container { width: 100vw; height: 100vh; display: block; }
+        #controls {
+            position: absolute;
+            bottom: 50px;
+            left: 10px;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="range"] {
+            width: 200px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        p span {
+            font-weight: bold;
+        }
+        button {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="controls">
+        <button onClick="window.location.reload();">Reset</button>
+        <label>
+            Observer Separation (units):
+            <input type="range" id="observerSeparation" min="1" max="10" step="0.1" value="5">
+            <span id="observerSeparationValue">5</span>
+        </label>
+        <label>
+            Object Distance (units):
+            <input type="range" id="objectDistance" min="5" max="50" step="0.5" value="20">
+            <span id="objectDistanceValue">20</span>
+        </label>
+        <label>
+            Number of Stars:
+            <input type="range" id="numStars" min="0" max="20000" step="1" value="1000">
+            <span id="numStarsValue">1000</span>
+        </label>
+        <label>
+            Size of Observer 1
+            <input type="range" id="observerSize" min="0" max="15" step="0.02" value="8">
+            <span id="observerSizeValue">8</span>
+        </label>
+        <p>Calculated Parallax Angle: <span id="parallaxAngle">0</span> degrees</p>
+        <p>Distance Red Object Needs to be In Order to be Fully Obstructed by Observer 1: <span id="obstructedDistance">NA</span> units</p>
+        <p>Real Distance of Red Object: <span id="redObjectDistance">NA</span> units</p>
+        <div>
+            <label>
+                <input type="radio" name="observerView" value="default" checked> Default View
+            </label>
+            <label>
+                <input type="radio" name="observerView" value="observer1"> Observer 1 View
+            </label>
+            <label>
+                <input type="radio" name="observerView" value="observer2"> Observer 2 View
+            </label>
+            <label>
+                <input type="radio" name="observerView" value="obstructed"> Obstructed
+            </label>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
